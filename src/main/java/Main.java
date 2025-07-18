@@ -2,14 +2,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
     public static final String ACTONE = "1";
+
     public static final String ACTTWO = "2";
+
     public static final String ACTTHREE = "3";
+
     public static final String ACTFOUR = "4";
+
     public static final String ACTFIVE = "5";
-    public static final String ACTSIX= "6";
+
+    public static final String ACTSIX = "6";
+
     public static final String ACTSEVEN = "7";
-    public static void main(String[]args){
+
+    public static void main(String[] args) {
         Catalog catalog = new InMemoryCatalog();
         ShoppingCart cart = new ShoppingCart();
         PaymentService paymentService = new CreditCardPaymentService();
@@ -32,13 +40,13 @@ public class Main {
 
         while (true) {
             System.out.println("\nВыберите действие:");
-            System.out.println(ACTONE+". Просмотр товаров");
-            System.out.println(ACTTWO+". Поиск товаров");
-            System.out.println(ACTTHREE+". Добавить в корзину");
-            System.out.println(ACTFOUR+". Просмотреть корзину");
-            System.out.println(ACTFIVE+". Оформить заказ");
-            System.out.println(ACTSIX+". Отслеживать заказ");
-            System.out.println(ACTSEVEN+". Выход");
+            System.out.println(ACTONE + ". Просмотр товаров");
+            System.out.println(ACTTWO + ". Поиск товаров");
+            System.out.println(ACTTHREE + ". Добавить в корзину");
+            System.out.println(ACTFOUR + ". Просмотреть корзину");
+            System.out.println(ACTFIVE + ". Оформить заказ");
+            System.out.println(ACTSIX + ". Отслеживать заказ");
+            System.out.println(ACTSEVEN + ". Выход");
 
             System.out.print("Введите свой выбор: ");
             String choice = scanner.nextLine();
