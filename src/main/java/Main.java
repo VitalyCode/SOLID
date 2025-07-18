@@ -2,6 +2,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    public static final String ACTONE = "1";
+    public static final String ACTTWO = "2";
+    public static final String ACTTHREE = "3";
+    public static final String ACTFOUR = "4";
+    public static final String ACTFIVE = "5";
+    public static final String ACTSIX= "6";
+    public static final String ACTSEVEN = "7";
     public static void main(String[]args){
         Catalog catalog = new InMemoryCatalog();
         ShoppingCart cart = new ShoppingCart();
@@ -25,19 +32,19 @@ public class Main {
 
         while (true) {
             System.out.println("\nВыберите действие:");
-            System.out.println("1. Просмотр товаров");
-            System.out.println("2. Поиск товаров");
-            System.out.println("3. Добавить в корзину");
-            System.out.println("4. Просмотреть корзину");
-            System.out.println("5. Оформить заказ");
-            System.out.println("6. Отслеживать заказ");
-            System.out.println("7. Выход");
+            System.out.println(ACTONE+". Просмотр товаров");
+            System.out.println(ACTTWO+". Поиск товаров");
+            System.out.println(ACTTHREE+". Добавить в корзину");
+            System.out.println(ACTFOUR+". Просмотреть корзину");
+            System.out.println(ACTFIVE+". Оформить заказ");
+            System.out.println(ACTSIX+". Отслеживать заказ");
+            System.out.println(ACTSEVEN+". Выход");
 
             System.out.print("Введите свой выбор: ");
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1":
+                case ACTONE:
                     List<Product> allProducts = catalog.getAllProducts();
                     if (allProducts.isEmpty()) {
                         System.out.println("Нет доступных продуктов.");
@@ -48,7 +55,7 @@ public class Main {
                         }
                     }
                     break;
-                case "2":
+                case ACTTWO:
                     System.out.print("Введите ключевое слово для поиска: ");
                     String keyword = scanner.nextLine();
                     List<Product> searchResults = catalog.searchProducts(keyword);
@@ -61,7 +68,7 @@ public class Main {
                         }
                     }
                     break;
-                case "3":
+                case ACTTHREE:
                     System.out.print("Введите код товара для добавления в корзину: ");
                     String productId = scanner.nextLine();
                     Product product = catalog.getProductById(productId);
@@ -74,7 +81,7 @@ public class Main {
                         System.out.println(quantity + " " + product.getName() + "добавлены в корзину.");
                     }
                     break;
-                case "4":
+                case ACTFOUR:
                     List<ShoppingCart.CartItem> cartItems = cart.getItems();
                     if (cartItems.isEmpty()) {
                         System.out.println("Ваша корзина пуста.");
@@ -86,7 +93,7 @@ public class Main {
                         System.out.println("Сумма: $" + cart.calculateTotal());
                     }
                     break;
-                case "5":
+                case ACTFIVE:
                     if (cart.getItems().isEmpty()) {
                         System.out.println("Ваша корзина пуста. Добавьте товары перед оформлением заказа.");
                     } else {
@@ -104,13 +111,13 @@ public class Main {
                         }
                     }
                     break;
-                case "6":
+                case ACTSIX:
                     System.out.print("Введите идентификатор заказа для отслеживания: ");
                     String orderId = scanner.nextLine();
                     String trackingInfo = deliveryService.trackOrder(orderId);
                     System.out.println(trackingInfo);
                     break;
-                case "7":
+                case ACTSEVEN:
                     System.out.println("Спасибо вам за покупки вместе с нами!");
                     scanner.close();
                     return;
