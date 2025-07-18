@@ -77,17 +77,7 @@ public class Main {
                     }
                     break;
                 case ACTTHREE:
-                    System.out.print("Введите код товара для добавления в корзину: ");
-                    String productId = scanner.nextLine();
-                    Product product = catalog.getProductById(productId);
-                    if (product == null) {
-                        System.out.println("Товар не найден.");
-                    } else {
-                        System.out.print("Введите количество: ");
-                        int quantity = Integer.parseInt(scanner.nextLine());
-                        cart.addItem(product, quantity);
-                        System.out.println(quantity + " " + product.getName() + "добавлены в корзину.");
-                    }
+                    addProductToCart(scanner, catalog, cart); // Using extracted method
                     break;
                 case ACTFOUR:
                     List<ShoppingCart.CartItem> cartItems = cart.getItems();
@@ -132,6 +122,19 @@ public class Main {
                 default:
                     System.out.println("Неверный выбор. Пожалуйста, попробуйте снова.");
             }
+        }
+    }
+    private static void addProductToCart(Scanner scanner, Catalog catalog, ShoppingCart cart) {
+        System.out.print("Введите код товара для добавления в корзину: ");
+        String productId = scanner.nextLine();
+        Product product = catalog.getProductById(productId);
+        if (product == null) {
+            System.out.println("Товар не найден.");
+        } else {
+            System.out.print("Введите количество: ");
+            int quantity = Integer.parseInt(scanner.nextLine());
+            cart.addItem(product, quantity);
+            System.out.println(quantity + " " + product.getName() + "добавлены в корзину.");
         }
     }
 }
