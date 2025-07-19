@@ -3,19 +3,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static final String ACTONE = "1";
-
-    public static final String ACTTWO = "2";
-
-    public static final String ACTTHREE = "3";
-
-    public static final String ACTFOUR = "4";
-
-    public static final String ACTFIVE = "5";
-
-    public static final String ACTSIX = "6";
-
-    public static final String ACTSEVEN = "7";
+    public static final int VIEW_PRODUCTS = 1;
+    public static final int SEARCH_PRODUCTS = 2;
+    public static final int ADD_TO_CART = 3;
+    public static final int VIEW_CART = 4;
+    public static final int PLACE_ORDER = 5;
+    public static final int TRACK_ORDER = 6;
+    public static final int EXIT = 7;
 
     public static void main(String[] args) {
         Catalog catalog = new InMemoryCatalog();
@@ -40,19 +34,19 @@ public class Main {
 
         while (true) {
             System.out.println("\nВыберите действие:");
-            System.out.println(ACTONE + ". Просмотр товаров");
-            System.out.println(ACTTWO + ". Поиск товаров");
-            System.out.println(ACTTHREE + ". Добавить в корзину");
-            System.out.println(ACTFOUR + ". Просмотреть корзину");
-            System.out.println(ACTFIVE + ". Оформить заказ");
-            System.out.println(ACTSIX + ". Отслеживать заказ");
-            System.out.println(ACTSEVEN + ". Выход");
+            System.out.println(VIEW_PRODUCTS + ". Просмотр товаров");
+            System.out.println(SEARCH_PRODUCTS + ". Поиск товаров");
+            System.out.println(ADD_TO_CART + ". Добавить в корзину");
+            System.out.println(VIEW_CART + ". Просмотреть корзину");
+            System.out.println(PLACE_ORDER + ". Оформить заказ");
+            System.out.println(TRACK_ORDER + ". Отслеживать заказ");
+            System.out.println(EXIT + ". Выход");
 
             System.out.print("Введите свой выбор: ");
-            String choice = scanner.nextLine();
+            int choice = scanner.nextInt();
 
             switch (choice) {
-                case ACTONE:
+                case VIEW_PRODUCTS:
                     List<Product> allProducts = catalog.getAllProducts();
                     if (allProducts.isEmpty()) {
                         System.out.println("Нет доступных продуктов.");
@@ -63,7 +57,7 @@ public class Main {
                         }
                     }
                     break;
-                case ACTTWO:
+                case SEARCH_PRODUCTS:
                     System.out.print("Введите ключевое слово для поиска: ");
                     String keyword = scanner.nextLine();
                     List<Product> searchResults = catalog.searchProducts(keyword);
@@ -76,10 +70,10 @@ public class Main {
                         }
                     }
                     break;
-                case ACTTHREE:
+                case ADD_TO_CART:
                     addProductToCart(scanner, catalog, cart); // Using extracted method
                     break;
-                case ACTFOUR:
+                case VIEW_CART:
                     List<ShoppingCart.CartItem> cartItems = cart.getItems();
                     if (cartItems.isEmpty()) {
                         System.out.println("Ваша корзина пуста.");
@@ -91,7 +85,7 @@ public class Main {
                         System.out.println("Сумма: $" + cart.calculateTotal());
                     }
                     break;
-                case ACTFIVE:
+                case PLACE_ORDER:
                     if (cart.getItems().isEmpty()) {
                         System.out.println("Ваша корзина пуста. Добавьте товары перед оформлением заказа.");
                     } else {
@@ -109,13 +103,13 @@ public class Main {
                         }
                     }
                     break;
-                case ACTSIX:
+                case TRACK_ORDER:
                     System.out.print("Введите идентификатор заказа для отслеживания: ");
                     String orderId = scanner.nextLine();
                     String trackingInfo = deliveryService.trackOrder(orderId);
                     System.out.println(trackingInfo);
                     break;
-                case ACTSEVEN:
+                case EXIT:
                     System.out.println("Спасибо вам за покупки вместе с нами!");
                     scanner.close();
                     return;
